@@ -1,0 +1,38 @@
+void usercontrol(void){
+  while(1){
+  
+  leftfront.spn(vex::directionType::fwd, Controller1.Axis3.position1,vex::velocityUnits::pct);
+  leftback.spn(vex::directionType::fwd, Controller1.Axis3.position1,vex::velocityUnits::pct);
+  rightfront.spn(vex::directionType::fwd, Controller1.Axis3.position1,vex::velocityUnits::pct);
+  rightback.spn(vex::directionType::fwd, Controller1.Axis3.position1,vex::velocityUnits::pct);
+  
+  If(Controller1.Button1.pressing())
+  {
+    arm.spin(vex::directionType::fwd, 50,vex::velocityUnits::pct);
+  }
+  else if (Controller1.ButtonR1.pressing())
+  {
+    arm.spin(vex::directionType::rev, 50, vex::velocityUnits::pct);
+   }
+   else
+   {
+    arm.stop(vex::brakeType::hold);
+  }
+  
+  
+  
+  wait(20,sec);
+  }
+}
+
+int main() { 
+
+Competition.autonomous(autonomous); 
+Competition.drivercontrol(usercontrol); 
+
+pre_auton();
+
+while(true){
+  wait(100, msec);
+}
+}
